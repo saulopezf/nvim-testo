@@ -89,7 +89,7 @@ return {
             -- JSON5 to read .vscode/launch.json file
             {
                 "Joakker/lua-json5",
-                build = is_windows_hell and "powershell ./install.ps1" or "./install.sh",
+                build = is_windows_hell and "powershell ./install.ps1" or "sh ./install.sh",
             },
             --------------------------------DAP JS/TS--------------------------------------
 
