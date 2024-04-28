@@ -8,29 +8,12 @@
 -- Directory separator variable to know if we are in Windows
 local is_windows_hell = package.config:sub(1, 1) == "\\"
 
--- Keywords for TS/JS languages
-local js_languages = {
-    "typescript",
-    "javascript",
-    "typescriptreact",
-    "javascriptreact",
-    "vue",
-}
-
 return {
     {
         "mfussenegger/nvim-dap",
         lazy = true,
         config = function()
-            if vim.fn.filereadable ".vscode/launch.json" then
-                local dap_vscode = require "dap.ext.vscode"
-                dap_vscode.load_launchjs(nil, {
-                    ["node"] = js_languages,
-                    ["pwa-node"] = js_languages,
-                    ["chrome"] = js_languages,
-                    ["pwa-chrome"] = js_languages,
-                })
-            end
+            require "configs.dap-opts"
         end,
         dependencies = {
             ----------------------------------DAP UI---------------------------------------
