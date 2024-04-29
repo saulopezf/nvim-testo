@@ -1,7 +1,9 @@
 local dap = require "dap"
 -- dap.set_log_level "TRACE" -- uncomment for logs
 
--- Keywords for TS/JS languages
+---------------------------------- [[ JS/TS CONFIG ]] ----------------------------------
+
+-- Keywords for js/ts languages
 local js_languages = {
     "typescript",
     "javascript",
@@ -9,17 +11,6 @@ local js_languages = {
     "javascriptreact",
     "vue",
 }
-
--- Autoload .vscode/launch.json debugger options for js/ts files
-if vim.fn.filereadable ".vscode/launch.json" then
-    local dap_vscode = require "dap.ext.vscode"
-    dap_vscode.load_launchjs(nil, {
-        ["node2"] = js_languages,
-        ["pwa-node"] = js_languages,
-        ["chrome"] = js_languages,
-        ["pwa-chrome"] = js_languages,
-    })
-end
 
 -- Debbuger options for js/ts files
 for _, language in ipairs(js_languages) do
@@ -67,5 +58,21 @@ for _, language in ipairs(js_languages) do
             sourceMaps = true,
             userDataDir = false,
         },
+        -- Separator
+        {
+            name = "----- ↓ launch.json configs ↓ -----",
+            type = "",
+            request = "launch",
+        },
     }
+
+    -- Autoload .vscode/launch.json debugger options for js/ts files
+    if vim.fn.filereadable ".vscode/launch.json" then
+        local dap_vscode = require "dap.ext.vscode"
+        dap_vscode.load_launchjs(nil, {
+            ["pwa-node"] = js_languages,
+            ["chrome"] = js_languages,
+            ["pwa-chrome"] = js_languages,
+        })
+    end
 end
