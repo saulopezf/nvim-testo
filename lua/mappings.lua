@@ -6,6 +6,17 @@ local delmap = vim.keymap.del
 map("n", ";", ":", { desc = "CMD enter command mode" })
 -- map("n", "<leader>d", { desc = "Debugger options" })
 
+-- Telescope
+map(
+    "n",
+    "<leader>fq",
+    ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
+    { desc = "telescope live grep args" }
+)
+
+-- Git (Gitsigns already installed from NvChad)
+map("n", "<leader>gl", ":Gitsigns toggle_current_line_blame<CR>", { desc = "Git toggle line blame" })
+
 -- Debugger (DAP)
 local dap = require "dap"
 map("n", "<leader>db", dap.toggle_breakpoint, { desc = "DAP Set breakpoint" })
