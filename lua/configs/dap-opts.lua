@@ -1,6 +1,14 @@
 local dap = require "dap"
 -- dap.set_log_level "TRACE" -- uncomment for logs
 
+vim.api.nvim_set_hl(0, "DapStopped", { ctermbg = 0, bg = "#31353f" })
+
+vim.fn.sign_define("DapBreakpoint", { text = "B" })
+vim.fn.sign_define("DapBreakpointCondition", { text = "C" })
+vim.fn.sign_define("DapBreakpointRejected", { text = "" })
+vim.fn.sign_define("DapLogPoint", { text = "" })
+vim.fn.sign_define("DapStopped", { text = "", texthl = "DapStopped", linehl = "DapStopped", numhl = "DapStopped" })
+
 ---------------------------------- [[ JS/TS CONFIG ]] ----------------------------------
 
 -- Keywords for js/ts languages

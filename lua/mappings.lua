@@ -13,6 +13,11 @@ map(
     ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
     { desc = "telescope live grep args" }
 )
+map("n", "<leader>fr", require("telescope.builtin").resume, {
+    noremap = true,
+    silent = true,
+    desc = "telescope resume last search",
+})
 
 -- Git (Gitsigns already installed from NvChad)
 map("n", "<leader>gl", ":Gitsigns toggle_current_line_blame<CR>", { desc = "Git toggle line blame" })
@@ -25,3 +30,4 @@ map("n", "<leader>dO", dap.step_out, { desc = "DAP Step out" })
 map("n", "<leader>do", dap.step_over, { desc = "DAP Step over" })
 local dapui = require "dapui"
 map("n", "<leader>dt", dapui.toggle, { desc = "DAP UI Toggle" })
+map("n", "<leader>dk", dapui.eval, { desc = "DAP eval hover" })
