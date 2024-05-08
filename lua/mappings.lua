@@ -4,7 +4,10 @@ local map = vim.keymap.set
 local delmap = vim.keymap.del
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
--- map("n", "<leader>d", { desc = "Debugger options" })
+map("n", "<A-j>", ":m .+1<CR>", { desc = "Move line down" })
+map("n", "<A-Down>", ":m .+1<CR>", { desc = "Move line down (arrow)" })
+map("n", "<A-k>", ":m .-2<CR>", { desc = "Move line up" })
+map("n", "<A-Up>", ":m .-2<CR>", { desc = "Move line up (arrow)" })
 
 -- Telescope
 map(
