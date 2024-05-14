@@ -41,7 +41,26 @@ return {
             },
             ----------------------------------DAP UI---------------------------------------
 
-            --------------------------------DAP JS/TS--------------------------------------
+            --------------------------DEFAULT ADAPTER CONFIG-------------------------------
+            {
+                "jay-babu/mason-nvim-dap.nvim",
+                config = function()
+                    -- This wraps the DAPs installed via Mason automatically
+                    local mason_nvim_dap = require "mason-nvim-dap"
+                    mason_nvim_dap.setup {
+                        handlers = {
+                            -- This first function will load default configurations for Mason DAPs installed
+                            function(config)
+                                mason_nvim_dap.default_setup(config)
+                            end,
+                            -- Then we can configurate adapters manually
+                        },
+                    }
+                end,
+            },
+            --------------------------DEFAULT ADAPTER CONFIG-------------------------------
+
+            ---------------------------JS/TS ADAPTER CONFIG--------------------------------
             -- DAP for Javascript/Typescript
             {
                 "microsoft/vscode-js-debug",
@@ -74,16 +93,7 @@ return {
                 "Joakker/lua-json5",
                 build = is_windows_hell and "powershell ./install.ps1" or "sh ./install.sh",
             },
-            --------------------------------DAP JS/TS--------------------------------------
-
-            ----------------------------------DAP GO---------------------------------------
-            {
-                "leoluz/nvim-dap-go",
-                config = function()
-                    require("dap-go").setup()
-                end,
-            },
-            ----------------------------------DAP GO---------------------------------------
+            ---------------------------JS/TS ADAPTER CONFIG--------------------------------
         },
     },
 }

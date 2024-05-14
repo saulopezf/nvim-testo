@@ -3,9 +3,9 @@ local dap = require "dap"
 
 vim.api.nvim_set_hl(0, "DapStopped", { ctermbg = 0, bg = "#31353f" })
 
-vim.fn.sign_define("DapBreakpoint", { text = "B" })
-vim.fn.sign_define("DapBreakpointCondition", { text = "C" })
-vim.fn.sign_define("DapBreakpointRejected", { text = "" })
+vim.fn.sign_define("DapBreakpoint", { text = "🔴" })
+vim.fn.sign_define("DapBreakpointCondition", { text = "🔵" })
+vim.fn.sign_define("DapBreakpointRejected", { text = "⚫" })
 vim.fn.sign_define("DapLogPoint", { text = "" })
 vim.fn.sign_define("DapStopped", { text = "", texthl = "DapStopped", linehl = "DapStopped", numhl = "DapStopped" })
 
@@ -84,3 +84,28 @@ for _, language in ipairs(js_languages) do
         })
     end
 end
+
+---------------------------------- [[ C/C++ CONFIG ]] ----------------------------------
+
+dap.configurations.cpp = {
+    {
+        name = "Launch file",
+        type = "codelldb",
+        request = "launch",
+        program = function()
+            -- Create a debugger executable with clang++ for codelldb
+            local path_to_src = vim.fn.input("Path to source: ", vim.fn.getcwd() .. "/", "file")
+            local path_to_debug_exe = vim.fn.getcwd() .. "/debug.exe"
+            local cmd = "clang++ --debug " .. path_to_src .. " -o " .. path_to_debug_exe
+            local output = os.execute(cmd)
+            if output ~= 0 then
+                error("\nError compiling debugger executable. CMD:\n" .. cmd)
+            end
+
+            -- Return the executable that codelldb needs for debug
+            return path_to_debug_exe
+        end,
+        cwd = "${workspaceFolder}",
+        stopOnEntry = false,
+    },
+}

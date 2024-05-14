@@ -2,13 +2,16 @@ return {
     "williamboman/mason.nvim",
     opts = {
         ensure_installed = {
-            "lua-language-server",
-            "typescript-language-server",
-            "stylua",
-            "html-lsp",
-            "css-lsp",
-            "prettier",
-            "eslint_d",
+            "lua-language-server", -- lua lsp
+            "typescript-language-server", -- js/ts lsp
+            "stylua", -- lua formatter
+            "html-lsp", -- html lsp
+            "css-lsp", -- css lsp
+            "prettier", -- js/ts formatter
+            "eslint_d", -- js/ts cli linter
+            "clangd", -- c/c++ lsp
+            "clang-format", -- c/c++ formatter
+            "codelldb", -- c/c++ DAP
         },
     },
 }
