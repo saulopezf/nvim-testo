@@ -34,3 +34,13 @@ map("n", "<leader>do", dap.step_over, { desc = "DAP Step over" })
 local dapui = require "dapui"
 map("n", "<leader>dt", dapui.toggle, { desc = "DAP UI Toggle" })
 map("n", "<leader>dk", dapui.eval, { desc = "DAP eval hover" })
+
+-- Folding (nvim-ufo)
+map("n", "zR", require("ufo").openAllFolds, { desc = "Open all folds" })
+map("n", "zM", require("ufo").closeAllFolds, { desc = "Close all folds" })
+map("n", "zK", function()
+    local winid = require("ufo").peekFoldedLinesUnderCursor()
+    if not winid then
+        vim.lsp.buf.hover()
+    end
+end, { desc = "Peek fold" })
