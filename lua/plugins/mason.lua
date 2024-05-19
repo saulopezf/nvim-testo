@@ -9,8 +9,7 @@ return {
             "css-lsp", -- css lsp
             "prettier", -- js/ts formatter
             "eslint_d", -- js/ts cli linter
-            "clangd", -- c/c++ lsp
-            "clang-format", -- c/c++ formatter
+            "clangd", -- c/c++ lsp & formatter
             "codelldb", -- c/c++ DAP
         },
     },
