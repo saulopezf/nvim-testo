@@ -6,7 +6,7 @@ local M = {}
 
 M.ui = {
     theme = "flexoki",
-    telescope = { style = "bordered" }
+    telescope = { style = "bordered" },
 }
 
 return M
