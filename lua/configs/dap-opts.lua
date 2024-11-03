@@ -73,16 +73,6 @@ for _, language in ipairs(js_languages) do
             request = "launch",
         },
     }
-
-    -- Autoload .vscode/launch.json debugger options for js/ts files
-    if vim.fn.filereadable ".vscode/launch.json" then
-        local dap_vscode = require "dap.ext.vscode"
-        dap_vscode.load_launchjs(nil, {
-            ["pwa-node"] = js_languages,
-            ["chrome"] = js_languages,
-            ["pwa-chrome"] = js_languages,
-        })
-    end
 end
 
 ---------------------------------- [[ C/C++ CONFIG ]] ----------------------------------
